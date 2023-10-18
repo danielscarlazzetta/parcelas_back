@@ -1,12 +1,34 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
 import { CreateParcelaDto } from './dto/create-parcela.dto';
 import { UpdateParcelaDto } from './dto/update-parcela.dto';
+import { InjectModel } from '@nestjs/mongoose';
+import { Parcela } from './entities/parcela.entity';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class ParcelaService {
-  create(createParcelaDto: CreateParcelaDto) {
+
+
+  constructor(
+    @InjectModel(Parcela.name)
+    private parcelaModel: Model<Parcela>,
+  ) { }
+
+
+  async create(createParcelaDto: CreateParcelaDto): Promise<Parcela> {
     console.log(createParcelaDto)
-    return 'This action adds a new parcela';
+    try {
+      const newParcela = new this.parcelaModel(createParcelaDto);
+      return await newParcela.save()
+
+    } catch (err) {
+      console.log(err.code)
+      if (err.code === 11000) {
+        throw new BadRequestException(`${createParcelaDto.direccion} Ya existe esta direccion!`);
+      }
+      throw new InternalServerErrorException('Algo ha ocurrido');
+    }
+
   }
 
   findAll() {

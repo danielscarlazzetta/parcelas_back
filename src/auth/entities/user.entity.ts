@@ -18,7 +18,7 @@ export class User {
         minlength: 6,
         required: true,
     })
-    password: string;
+    password?: string;
 
     @Prop({
         default: true,

@@ -74,3 +74,18 @@ app.useGlobalPipes(
     })
   )
 ```
+
+
+## Encriptar contrasenias
+
+```bash
+# instalamos lo siguiente
+$ npm i bcryptjs
+$ npm i --save-dev @types/bcryptjs
+```
+
+## Instalamos el token para su uso
+
+```bash
+$ npm install --save @nestjs/
+```
