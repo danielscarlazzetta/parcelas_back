@@ -41,3 +41,20 @@ $ npm run test:cov
 # en terminal separada usamos el siguiente comando
 $ docker compose up -d
 ```
+
+## Instalar mongoose
+
+```bash
+
+# en terminalk instalamos lo siguiente
+$ npm i @nestjs/mongoose mongoose
+```
+
+## Para poder utilizaer variables de entorno
+
+```bash
+imports: [
+    ConfigModule.forRoot(),
+# Este va en consola
+npm i @nestjs/config
+```
