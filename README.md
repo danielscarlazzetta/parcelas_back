@@ -58,3 +58,19 @@ imports: [
 # Este va en consola
 npm i @nestjs/config
 ```
+
+## Para crear klas validaciones del DTO instalamos lo siguiente
+
+```bash
+
+$ npm i class-validator class-transformer
+```
+depues de instalar, pegaremos el siguiente codigo en el main.ts:
+```
+app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+    })
+  )
+```
