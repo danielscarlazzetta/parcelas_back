@@ -19,7 +19,7 @@ export class AuthService {
   ) { }
 
 
-//Creacion de usuario!
+//! Creacion de usuario!
   async create(createUserDto: CreateUserDto): Promise<User> {
     try {
       const { password, ...userData } = createUserDto;
@@ -42,7 +42,7 @@ export class AuthService {
     }
   }
 
-//Registro de Usuarios!
+//! Registro de Usuarios!
   async register(registerUserDto: RegisterUserDto): Promise<LoginResponse> {
 
     const user = await this.create(registerUserDto);
@@ -53,7 +53,7 @@ export class AuthService {
     };
   }
 
-//Login con jwt de usuario
+//! Login con jwt de usuario
   async login(loginDto: LoginDto): Promise<LoginResponse> {
     const { email, password } = loginDto;
 
@@ -74,18 +74,18 @@ export class AuthService {
     };
   }
 
-// Creacion de JWT parea el usuario
+//! Creacion de JWT parea el usuario
   getJwtToken(payload: JwtPayload) {
     const token = this.jwtService.sign(payload);
     return token;
   }
 
-// Recupera todos los usuarios
+//! Recupera todos los usuarios
   findAll(): Promise<User[]> {
     return this.userModel.find()
   }
 
-// encuentra al usuario que esta conectado con su token
+//! encuentra al usuario que esta conectado con su token
 async findUserById( id: string ){
   const user = await  this.userModel.findById( id );
   const { password, ...res} = user.toJSON();
@@ -93,17 +93,17 @@ async findUserById( id: string ){
   return res;
 }
 
-//Encuentra un usuario en especifico
+//! Encuentra un usuario en especifico
   findOne(id: number) {
     return `This action returns a #${id} auth`;
   }
 
-//Actualiza usuario con ID
+//! Actualiza usuario con ID
   update(id: number, updateAuthDto: UpdateAuthDto) {
     return `This action updates a #${id} auth`;
   }
 
-//Elimina usuario con ID
+//! Elimina usuario con ID
   remove(id: number) {
     return `This action removes a #${id} auth`;
   }
