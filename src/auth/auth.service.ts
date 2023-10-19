@@ -81,9 +81,17 @@ export class AuthService {
   }
 
 // Recupera todos los usuarios
-  findAll() {
-    return `This action returns all auth`;
+  findAll(): Promise<User[]> {
+    return this.userModel.find()
   }
+
+// encuentra al usuario que esta conectado con su token
+async findUserById( id: string ){
+  const user = await  this.userModel.findById( id );
+  const { password, ...res} = user.toJSON();
+
+  return res;
+}
 
 //Encuentra un usuario en especifico
   findOne(id: number) {

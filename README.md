@@ -89,3 +89,9 @@ $ npm i --save-dev @types/bcryptjs
 ```bash
 $ npm install --save @nestjs/
 ```
+
+## Creacion de guards
+
+```bash
+$ nest g gu auth/guards/auth
+```
