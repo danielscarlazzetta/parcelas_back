@@ -16,13 +16,12 @@ export class ParcelaService {
 
 
   async create(createParcelaDto: CreateParcelaDto): Promise<Parcela> {
-    console.log(createParcelaDto)
+
     try {
       const newParcela = new this.parcelaModel(createParcelaDto);
       return await newParcela.save()
 
     } catch (err) {
-      console.log(err.code)
       if (err.code === 11000) {
         throw new BadRequestException(`${createParcelaDto.direccion} Ya existe esta direccion!`);
       }
@@ -32,7 +31,7 @@ export class ParcelaService {
   }
 
   findAll() {
-    return `This action returns all parcela`;
+    return this.parcelaModel.find();
   }
 
   findOne(id: number) {

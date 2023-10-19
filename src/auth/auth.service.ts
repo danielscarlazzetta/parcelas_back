@@ -34,7 +34,6 @@ export class AuthService {
       return user;
 
     } catch (err) {
-      console.log(err.code)
       if (err.code === 11000) {
         throw new BadRequestException(`${createUserDto.email} Ya existe este correo!`);
       }
@@ -46,7 +45,6 @@ export class AuthService {
   async register(registerUserDto: RegisterUserDto): Promise<LoginResponse> {
 
     const user = await this.create(registerUserDto);
-    console.log(user)
     return {
       user: user,
       token: this.getJwtToken({ id: user._id })
